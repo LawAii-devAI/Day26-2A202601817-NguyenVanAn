@@ -9,6 +9,24 @@ Cách chạy:
     python weather_function_calling.py
 """
 
+import os
+import sys
+
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    if "GEMINI_API_KEY" not in os.environ and "GOOGLE_API_KEY" in os.environ:
+        os.environ["GEMINI_API_KEY"] = os.environ["GOOGLE_API_KEY"]
+except ImportError:
+    pass
+
 from google import genai
 from google.genai import types
 

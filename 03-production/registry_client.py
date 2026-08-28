@@ -30,6 +30,13 @@ from pathlib import Path
 
 import httpx
 
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from mcp.client.streamable_http import streamable_http_client
@@ -41,7 +48,7 @@ class ToolRegistry:
     """Danh mục trung tâm — agent tra cứu tool theo tag, tên, hoặc mô tả."""
 
     def __init__(self, path: Path = REGISTRY_PATH) -> None:
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
         self.tools: dict[str, dict] = data["tools"]
         self.servers: dict[str, dict] = data["servers"]
@@ -87,9 +94,16 @@ async def connect_and_call(match: dict, tool_args: dict) -> str:
     tool_name = match["tool"]
 
     if server.get("transport") == "stdio":
+        resolved_args = []
+        for arg in server.get("args", []):
+            candidate = Path(__file__).parent / arg
+            if candidate.exists():
+                resolved_args.append(str(candidate.resolve()))
+            else:
+                resolved_args.append(arg)
         params = StdioServerParameters(
             command=sys.executable,
-            args=server["args"],
+            args=resolved_args,
         )
         async with stdio_client(params) as (read, write):
             async with ClientSession(read, write) as session:
