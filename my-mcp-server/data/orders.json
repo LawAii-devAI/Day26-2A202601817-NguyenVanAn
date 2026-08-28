@@ -1,0 +1,198 @@
+{
+  "ORD-2026-001": {
+    "order_id": "ORD-2026-001",
+    "customer": {
+      "customer_id": "CUST-881",
+      "name": "Nguyen Van A",
+      "email": "nguyenvana@example.com",
+      "phone": "+84912345678"
+    },
+    "items": [
+      {
+        "product_id": "PROD-SKU-01",
+        "name": "Bàn phím cơ không dây",
+        "quantity": 1,
+        "price": 450000
+      }
+    ],
+    "total_amount": 450000,
+    "currency": "VND",
+    "status": "COMPLETED",
+    "payment_method": "VNPAY",
+    "transaction_id": "TXN-998812",
+    "created_at": "2026-08-28T08:02:45+07:00",
+    "updated_at": "2026-08-28T08:03:16+07:00",
+    "audit_trail": [
+      {
+        "timestamp": "2026-08-28T08:02:45+07:00",
+        "action": "ORDER_CREATED",
+        "performed_by": "user:USR-1001",
+        "details": "Order placed via Web Checkout"
+      },
+      {
+        "timestamp": "2026-08-28T08:03:15+07:00",
+        "action": "PAYMENT_CONFIRMED",
+        "performed_by": "system:payment-gateway",
+        "details": "Payment success with VNPAY TXN-998812"
+      },
+      {
+        "timestamp": "2026-08-28T08:03:16+07:00",
+        "action": "STATUS_UPDATED",
+        "performed_by": "system:order-service",
+        "details": "Status changed PENDING -> COMPLETED"
+      }
+    ]
+  },
+  "ORD-2026-002": {
+    "order_id": "ORD-2026-002",
+    "customer": {
+      "customer_id": "CUST-882",
+      "name": "Tran Thi B",
+      "email": "tranthib@example.com",
+      "phone": "+84923456789"
+    },
+    "items": [
+      {
+        "product_id": "PROD-SKU-05",
+        "name": "Màn hình 27 inch 4K",
+        "quantity": 1,
+        "price": 1250000
+      }
+    ],
+    "total_amount": 1250000,
+    "currency": "VND",
+    "status": "PAYMENT_PENDING_RETRY",
+    "payment_method": "MOMO",
+    "transaction_id": null,
+    "created_at": "2026-08-28T08:22:10+07:00",
+    "updated_at": "2026-08-28T08:22:31+07:00",
+    "audit_trail": [
+      {
+        "timestamp": "2026-08-28T08:22:10+07:00",
+        "action": "ORDER_CREATED",
+        "performed_by": "user:USR-2045",
+        "details": "Order placed via Mobile App"
+      },
+      {
+        "timestamp": "2026-08-28T08:22:30+07:00",
+        "action": "PAYMENT_FAILED_TIMEOUT",
+        "performed_by": "system:payment-gateway",
+        "details": "Payment gateway timeout 504 on MOMO"
+      }
+    ]
+  },
+  "ORD-2026-003": {
+    "order_id": "ORD-2026-003",
+    "customer": {
+      "customer_id": "CUST-883",
+      "name": "Le Van C",
+      "email": "levanc@example.com",
+      "phone": "+84934567890"
+    },
+    "items": [
+      {
+        "product_id": "PROD-SKU-99",
+        "name": "Tai nghe chống ồn Pro",
+        "quantity": 3,
+        "price": 890000
+      }
+    ],
+    "total_amount": 2670000,
+    "currency": "VND",
+    "status": "FAILED_OUT_OF_STOCK",
+    "payment_method": "COD",
+    "transaction_id": null,
+    "created_at": "2026-08-28T08:50:44+07:00",
+    "updated_at": "2026-08-28T08:51:05+07:00",
+    "audit_trail": [
+      {
+        "timestamp": "2026-08-28T08:50:44+07:00",
+        "action": "ORDER_CREATED",
+        "performed_by": "user:USR-3012",
+        "details": "Order placed with COD"
+      },
+      {
+        "timestamp": "2026-08-28T08:51:02+07:00",
+        "action": "INVENTORY_DEDUCTION_FAILED",
+        "performed_by": "system:inventory-manager",
+        "details": "Requested 3 items, only 2 remaining in warehouse"
+      }
+    ]
+  },
+  "ORD-2026-004": {
+    "order_id": "ORD-2026-004",
+    "customer": {
+      "customer_id": "CUST-884",
+      "name": "Pham Minh D",
+      "email": "phamminhd@example.com",
+      "phone": "+84945678901"
+    },
+    "items": [
+      {
+        "product_id": "PROD-SKU-12",
+        "name": "Chuột công thái học Ergonomic",
+        "quantity": 1,
+        "price": 320000
+      }
+    ],
+    "total_amount": 320000,
+    "currency": "VND",
+    "status": "COMPLETED",
+    "payment_method": "VNPAY",
+    "transaction_id": "TXN-998813",
+    "created_at": "2026-08-28T09:20:11+07:00",
+    "updated_at": "2026-08-28T09:20:46+07:00",
+    "audit_trail": [
+      {
+        "timestamp": "2026-08-28T09:20:11+07:00",
+        "action": "ORDER_CREATED",
+        "performed_by": "user:USR-1001",
+        "details": "Order placed via Web"
+      },
+      {
+        "timestamp": "2026-08-28T09:20:45+07:00",
+        "action": "PAYMENT_CONFIRMED",
+        "performed_by": "system:payment-gateway",
+        "details": "Payment success with VNPAY TXN-998813"
+      }
+    ]
+  },
+  "ORD-2026-005": {
+    "order_id": "ORD-2026-005",
+    "customer": {
+      "customer_id": "CUST-885",
+      "name": "Hoang Van E",
+      "email": "hoangvane@example.com",
+      "phone": "+84956789012"
+    },
+    "items": [
+      {
+        "product_id": "PROD-SKU-88",
+        "name": "Ổ cứng di động SSD 2TB",
+        "quantity": 1,
+        "price": 2150000
+      }
+    ],
+    "total_amount": 2150000,
+    "currency": "VND",
+    "status": "COMPLETED",
+    "payment_method": "ZALOPAY",
+    "transaction_id": "TXN-998814",
+    "created_at": "2026-08-28T09:50:22+07:00",
+    "updated_at": "2026-08-28T09:50:51+07:00",
+    "audit_trail": [
+      {
+        "timestamp": "2026-08-28T09:50:22+07:00",
+        "action": "ORDER_CREATED",
+        "performed_by": "user:USR-4099",
+        "details": "Order placed via Web"
+      },
+      {
+        "timestamp": "2026-08-28T09:50:50+07:00",
+        "action": "PAYMENT_CONFIRMED",
+        "performed_by": "system:payment-gateway",
+        "details": "Payment success with ZALOPAY"
+      }
+    ]
+  }
+}

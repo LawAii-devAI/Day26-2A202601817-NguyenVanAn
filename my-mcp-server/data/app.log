@@ -1,0 +1,39 @@
+2026-08-28 08:00:12 [INFO] [auth-service] User login success: user_id=USR-1001, ip=192.168.1.15
+2026-08-28 08:02:45 [INFO] [order-service] Order created: order_id=ORD-2026-001, customer=Nguyen Van A, amount=450000 VND
+2026-08-28 08:03:01 [INFO] [payment-gateway] Processing payment for order ORD-2026-001 via VNPAY: status=PENDING
+2026-08-28 08:03:15 [INFO] [payment-gateway] Payment success: order_id=ORD-2026-001, transaction_id=TXN-998812
+2026-08-28 08:03:16 [INFO] [order-service] Order status updated: order_id=ORD-2026-001, status=COMPLETED
+2026-08-28 08:15:20 [WARN] [inventory-manager] Low stock warning: product_id=PROD-SKU-99, remaining=2
+2026-08-28 08:22:10 [INFO] [order-service] Order created: order_id=ORD-2026-002, customer=Tran Thi B, amount=1250000 VND
+2026-08-28 08:22:30 [ERROR] [payment-gateway] Payment gateway timeout: order_id=ORD-2026-002, provider=MOMO, error_code=PG_TIMEOUT_504
+Traceback (most recent call last):
+  File "payment/gateway.py", line 142, in process_transaction
+    response = await client.post("https://api.momo.vn/v2/pay", timeout=5.0)
+httpx.ReadTimeout: Connection timed out while waiting for response from MOMO gateway
+2026-08-28 08:22:31 [WARN] [order-service] Order payment pending retry: order_id=ORD-2026-002, retry_count=1
+2026-08-28 08:35:00 [INFO] [auth-service] User login success: user_id=USR-2045, ip=14.162.140.22
+2026-08-28 08:40:12 [ERROR] [auth-service] JWT verification failed: TokenExpiredError - Signature has expired for token_id=tok_918237
+2026-08-28 08:50:44 [INFO] [order-service] Order created: order_id=ORD-2026-003, customer=Le Van C, amount=890000 VND
+2026-08-28 08:51:02 [ERROR] [inventory-manager] Inventory deduction failed: Insufficient stock for product_id=PROD-SKU-99 (requested=3, available=2)
+Traceback (most recent call last):
+  File "inventory/service.py", line 88, in deduct_stock
+    raise InsufficientStockException(f"Requested {qty} exceeds available {stock}")
+inventory.exceptions.InsufficientStockException: Requested 3 exceeds available 2
+2026-08-28 08:51:05 [WARN] [order-service] Order marked as FAILED due to inventory shortage: order_id=ORD-2026-003
+2026-08-28 09:05:18 [INFO] [notification-service] Sending email notification: recipient=customer_b@example.com, template=order_status
+2026-08-28 09:12:33 [CRITICAL] [database-cluster] Database connection pool exhausted: active_connections=100/100, waiting_queue=45
+Traceback (most recent call last):
+  File "db/pool.py", line 210, in acquire_connection
+    raise PoolTimeout("Timed out waiting for free connection after 10000ms")
+db.pool.PoolTimeout: Timed out waiting for free connection after 10000ms
+2026-08-28 09:12:35 [ERROR] [order-service] Failed to query order history: Database error on user_id=USR-1001
+2026-08-28 09:14:00 [INFO] [database-cluster] Database connection pool recovered: active_connections=32/100
+2026-08-28 09:20:11 [INFO] [order-service] Order created: order_id=ORD-2026-004, customer=Pham Minh D, amount=320000 VND
+2026-08-28 09:20:45 [INFO] [payment-gateway] Payment success: order_id=ORD-2026-004, transaction_id=TXN-998813
+2026-08-28 09:20:46 [INFO] [order-service] Order status updated: order_id=ORD-2026-004, status=COMPLETED
+2026-08-28 09:35:10 [WARN] [auth-service] Brute force login attempt detected: ip=45.33.32.156, username=admin, attempt_count=5
+2026-08-28 09:35:15 [WARN] [auth-service] IP 45.33.32.156 temporarily blocked for 30 minutes
+2026-08-28 09:42:01 [ERROR] [notification-service] Failed to send SMS notification: provider_error=API_QUOTA_EXCEEDED, phone=+84901234567
+2026-08-28 09:50:22 [INFO] [order-service] Order created: order_id=ORD-2026-005, customer=Hoang Van E, amount=2150000 VND
+2026-08-28 09:50:50 [INFO] [payment-gateway] Processing payment for order ORD-2026-005 via ZALOPAY: status=COMPLETED
+2026-08-28 09:50:51 [INFO] [order-service] Order status updated: order_id=ORD-2026-005, status=COMPLETED
